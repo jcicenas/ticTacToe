@@ -6,6 +6,7 @@ public class App {
     public static void main(String[] args) throws Exception {
         displayMethod();
         App m1 = new App();
+        rbtFlow(0, null);
     }
 
     public static void displayMethod(){
@@ -36,7 +37,39 @@ public class App {
 
     }
     public static void rbtFlow(int randomNum, HashMap<Integer, Character> map){
-        ArrayList<Integer> testList = new ArrayList<>();
-        testList.add(ccounter1);
+        boolean sentinel = false;
+        HashMap<Integer, Boolean> map = new HashMap<>();
+        boolean s1 = gameChecker(1, 3, 1, map);
+        boolean s2 = gameChecker(4, 6, 1, map);
+        boolean s3 = gameChecker(7, 9, 1, map);
+
+        boolean s4 = gameChecker(1, 7, 3, map);
+        boolean s5 = gameChecker(2, 8, 3, map);
+        boolean s6 = gameChecker(3, 9, 3, map);
+        
+        boolean s7 = gameChecker(3, 7, 2, map);
+        boolean s8 = gameChecker(1, 9, 4, map);
+        for (int i = 0; i < 8; i++) {
+            
+        }
+        
+    }
+
+    public static boolean gameChecker(int min, int max, int interval, HashMap<Integer, Character> map){
+        int counter = 0;
+        for (int i = min; i <= max; i = i + interval) {
+            if (map.get(i) == 'O') {
+                counter++;
+            }
+        }
+        if (counter == 2) {
+            for (int i = min; i <= max; i = i + interval) {
+                if (map.get(i) == '-') {
+                    return map.replace(i,'-', 'X');
+                }
+            }
+        }
+        return false;
+
     }
 }
